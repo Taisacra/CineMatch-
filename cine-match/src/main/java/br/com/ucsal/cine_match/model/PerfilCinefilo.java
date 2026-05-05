@@ -1,0 +1,109 @@
+package br.com.ucsal.cine_match.model;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import br.com.ucsal.cine_match.exception.DuracaoInvalidaException;
+import br.com.ucsal.cine_match.exception.NotaInvalidaException;
+import br.com.ucsal.cine_match.exception.PesoInvalidoException;
+import br.com.ucsal.cine_match.model.enums.ClassificacaoEtaria;
+import br.com.ucsal.cine_match.model.enums.Genero;
+import br.com.ucsal.cine_match.model.enums.Idioma;
+
+public class PerfilCinefilo {
+
+	private Long idPerfilCinefilo;
+	private Map<Genero,Double> pesoPorGenero;
+	private int duracaoMin;
+	private int duracaoMax;
+	private ClassificacaoEtaria classificacaoMaxima;
+	private Set<Idioma> idiomas;
+	private Set<String> historico;
+	private Map<String, Integer> notas;
+	
+	
+
+	public PerfilCinefilo(Long idPerfilCinefilo, int duracaoMin, int duracaoMax,
+			ClassificacaoEtaria classificacaoMaxima) {
+		
+		if (duracaoMin > duracaoMax) {
+			throw new DuracaoInvalidaException("A duracao mínima deve ser menor que a duração máxima.");
+		}
+		
+		this.idPerfilCinefilo = idPerfilCinefilo;
+		this.duracaoMin = duracaoMin;
+		this.duracaoMax = duracaoMax;
+		this.classificacaoMaxima = classificacaoMaxima;
+	
+		this.pesoPorGenero = new HashMap<>();
+		this.idiomas = new HashSet<>();
+		this.historico = new HashSet<>();
+		this.notas = new HashMap<>();
+		
+	}
+	
+	
+
+	public Long getIdPerfilCinefilo() {
+		return idPerfilCinefilo;
+	}
+
+	public int getDuracaoMin() {
+		return duracaoMin;
+	}
+
+	public int getDuracaoMax() {
+		return duracaoMax;
+	}
+
+	public ClassificacaoEtaria getClassificacaoMaxima() {
+		return classificacaoMaxima;
+	}
+	
+	public void adicionarPesoGenero(Genero genero, double peso) {
+        if (peso < 0 || peso > 1) {
+            throw new PesoInvalidoException("Peso deve estar entre 0 e 1.");
+        }
+        pesoPorGenero.put(genero, peso);
+    }
+
+    public void adicionarIdioma(Idioma idioma) {
+        idiomas.add(idioma);
+    }
+
+    public void adicionarFilmeAssistido(String titulo) {
+        historico.add(titulo);
+    }
+
+    public void adicionarNotaFilme(String tituloFilme, int nota) {
+        if (nota < 1 || nota > 5) {
+            throw new NotaInvalidaException("Nota deve estar entre 1 e 5.");
+        }
+
+        notas.put(tituloFilme, nota);
+    }
+    
+    public Double getPesoPorGenero(Genero genero) {
+        return pesoPorGenero.getOrDefault(genero, 0.0);
+    }
+
+    public Integer getNotaFilme(String titulo) {
+        return notas.get(titulo);
+    }
+    
+    public Set<Idioma> getIdiomas() {
+        return idiomas;
+    }
+
+    public Set<String> getHistorico() {
+        return historico;
+    }
+
+    public Map<String, Integer> getNotas() {
+        return notas;
+    }
+    
+    
+}
