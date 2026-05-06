@@ -14,7 +14,6 @@ import br.com.ucsal.cine_match.model.enums.Idioma;
 
 public class PerfilCinefilo {
 
-	private Long idPerfilCinefilo;
 	private Map<Genero,Double> pesoPorGenero;
 	private int duracaoMin;
 	private int duracaoMax;
@@ -25,14 +24,12 @@ public class PerfilCinefilo {
 	
 	
 
-	public PerfilCinefilo(Long idPerfilCinefilo, int duracaoMin, int duracaoMax,
-			ClassificacaoEtaria classificacaoMaxima) {
+	public PerfilCinefilo(int duracaoMin, int duracaoMax,ClassificacaoEtaria classificacaoMaxima) {
 		
 		if (duracaoMin > duracaoMax) {
 			throw new DuracaoInvalidaException("A duracao mínima deve ser menor que a duração máxima.");
 		}
 		
-		this.idPerfilCinefilo = idPerfilCinefilo;
 		this.duracaoMin = duracaoMin;
 		this.duracaoMax = duracaoMax;
 		this.classificacaoMaxima = classificacaoMaxima;
@@ -42,12 +39,6 @@ public class PerfilCinefilo {
 		this.historico = new HashSet<>();
 		this.notas = new HashMap<>();
 		
-	}
-	
-	
-
-	public Long getIdPerfilCinefilo() {
-		return idPerfilCinefilo;
 	}
 
 	public int getDuracaoMin() {
