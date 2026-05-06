@@ -14,18 +14,18 @@ public class Filme {
 	private int duracao;
 	private List<Genero> generos;
 	private ClassificacaoEtaria classificacao;
-	private Idioma idiomas;
+	private Idioma idioma;
 	private int popularidade;
 	
 	public Filme(Long idFilme, String titulo, int ano, int duracao, List<Genero> generos,
-			ClassificacaoEtaria classificacao, Idioma idiomas, int popularidade) {
+			ClassificacaoEtaria classificacao, Idioma idioma, int popularidade) {
 		this.idFilme = idFilme;
 		this.titulo = titulo;
 		this.ano = ano;
 		this.duracao = duracao;
 		this.generos = generos;
 		this.classificacao = classificacao;
-		this.idiomas = idiomas;
+		this.idioma = idioma;
 		this.popularidade = popularidade;
 	}
 
@@ -53,8 +53,8 @@ public class Filme {
 		return classificacao;
 	}
 
-	public Idioma getIdiomas() {
-		return idiomas;
+	public Idioma getIdioma() {
+		return idioma;
 	}
 
 	public int getPopularidade() {

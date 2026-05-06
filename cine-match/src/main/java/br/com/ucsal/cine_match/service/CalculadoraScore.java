@@ -1,6 +1,7 @@
 package br.com.ucsal.cine_match.service;
 
 import java.util.List;
+import java.util.Map;
 
 import br.com.ucsal.cine_match.model.Filme;
 import br.com.ucsal.cine_match.model.PerfilCinefilo;
@@ -45,11 +46,11 @@ public class CalculadoraScore {
 		if(filme.getDuracao() > perfil.getDuracaoMax()) {
 			diferencaDuracao = filme.getDuracao() - perfil.getDuracaoMax(); 
 		} else {
-			diferencaDuracao = perfil.getDuracaoMax() - filme.getDuracao();
+			diferencaDuracao = perfil.getDuracaoMin() - filme.getDuracao(); // se a duração for menor, a diferená é em relação ao minimo 
 		}
 		
 		/*REVISAR A LOGICA DA REDUCAO PROPORCIONAL*/
-		double scoreD = 100 - diferencaDuracao;
+		double scoreD = 100 - (diferencaDuracao * 1.25);
 		
 		if(scoreD < 0) {
 			return 0;
@@ -65,7 +66,21 @@ public class CalculadoraScore {
 	
 	/*FALTA IMPLEMENTAR ESSE SCORE*/
 	
-	/*private double scoreAfinidade(PerfilCinefilo perfil, Filme filme) {
-		
-	}*/
+	private double scoreAfinidade(PerfilCinefilo perfil, Filme filme) {
+	
+		for (Map.Entry<Filme, Integer> entry : perfil.getNotas().entrySet()) {
+			 Filme filmeAssistido = entry.getKey(); //pega o filme
+			 int nota = entry.getValue(); //pega o valor
+
+			 if (nota >= 4) {
+		            for (Genero genero : filme.getGeneros()) {
+		                if (filmeAssistido.getGeneros().contains(genero)) {
+		                    return 100; //15% equivale a 100. Verificar 
+		                }
+		            }
+		     }
+	    }
+		return 0;
+
+	}
 }

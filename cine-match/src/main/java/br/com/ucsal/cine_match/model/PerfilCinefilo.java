@@ -20,8 +20,8 @@ public class PerfilCinefilo {
 	private int duracaoMax;
 	private ClassificacaoEtaria classificacaoMaxima;
 	private Set<Idioma> idiomas;
-	private Set<String> historico;
-	private Map<String, Integer> notas;
+	private Set<Filme> historico;
+	private Map<Filme, Integer> notas;
 	
 	
 
@@ -73,11 +73,11 @@ public class PerfilCinefilo {
         idiomas.add(idioma);
     }
 
-    public void adicionarFilmeAssistido(String titulo) {
-        historico.add(titulo);
+    public void adicionarFilmeAssistido(Filme filme) {
+        historico.add(filme);
     }
 
-    public void adicionarNotaFilme(String tituloFilme, int nota) {
+    public void adicionarNotaFilme(Filme tituloFilme, int nota) {
         if (nota < 1 || nota > 5) {
             throw new NotaInvalidaException("Nota deve estar entre 1 e 5.");
         }
@@ -97,11 +97,11 @@ public class PerfilCinefilo {
         return idiomas;
     }
 
-    public Set<String> getHistorico() {
+    public Set<Filme> getHistorico() {
         return historico;
     }
 
-    public Map<String, Integer> getNotas() {
+    public Map<Filme, Integer> getNotas() {
         return notas;
     }
     
