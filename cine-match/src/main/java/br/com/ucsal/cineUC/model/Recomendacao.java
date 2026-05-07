@@ -1,4 +1,4 @@
-package br.com.ucsal.cine_match.model;
+package br.com.ucsal.cineUC.model;
 
 public class Recomendacao {
 	

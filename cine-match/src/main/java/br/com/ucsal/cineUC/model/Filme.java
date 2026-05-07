@@ -1,10 +1,10 @@
-package br.com.ucsal.cine_match.model;
+package br.com.ucsal.cineUC.model;
 
 import java.util.List;
 
-import br.com.ucsal.cine_match.model.enums.ClassificacaoEtaria;
-import br.com.ucsal.cine_match.model.enums.Genero;
-import br.com.ucsal.cine_match.model.enums.Idioma;
+import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
+import br.com.ucsal.cineUC.model.enums.Genero;
+import br.com.ucsal.cineUC.model.enums.Idioma;
 
 public class Filme {
 	

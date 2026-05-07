@@ -1,11 +1,11 @@
-package br.com.ucsal.cine_match.service;
+package br.com.ucsal.cineUC.service;
 
 import java.util.List;
 import java.util.Map;
 
-import br.com.ucsal.cine_match.model.Filme;
-import br.com.ucsal.cine_match.model.Recomendacao;
-import br.com.ucsal.cine_match.model.Usuario;
+import br.com.ucsal.cineUC.model.Filme;
+import br.com.ucsal.cineUC.model.Recomendacao;
+import br.com.ucsal.cineUC.model.Usuario;
 
 public interface HistoricoUsuarioRepository {
 	

@@ -1,4 +1,4 @@
-package br.com.ucsal.cine_match.model.enums;
+package br.com.ucsal.cineUC.model.enums;
 
 public enum Idioma {
 

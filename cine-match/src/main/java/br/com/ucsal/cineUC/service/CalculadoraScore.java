@@ -1,11 +1,11 @@
-package br.com.ucsal.cine_match.service;
+package br.com.ucsal.cineUC.service;
 
 import java.util.List;
 import java.util.Map;
 
-import br.com.ucsal.cine_match.model.Filme;
-import br.com.ucsal.cine_match.model.PerfilCinefilo;
-import br.com.ucsal.cine_match.model.enums.Genero;
+import br.com.ucsal.cineUC.model.Filme;
+import br.com.ucsal.cineUC.model.PerfilCinefilo;
+import br.com.ucsal.cineUC.model.enums.Genero;
 
 public class CalculadoraScore {
 

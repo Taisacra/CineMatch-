@@ -1,4 +1,4 @@
-package br.com.ucsal.cine_match.util;
+package br.com.ucsal.cineUC.util;
 
 public interface GeradorAleatorio {
 	

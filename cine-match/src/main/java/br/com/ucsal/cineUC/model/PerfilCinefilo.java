@@ -1,16 +1,16 @@
-package br.com.ucsal.cine_match.model;
+package br.com.ucsal.cineUC.model;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import br.com.ucsal.cine_match.exception.DuracaoInvalidaException;
-import br.com.ucsal.cine_match.exception.NotaInvalidaException;
-import br.com.ucsal.cine_match.exception.PesoInvalidoException;
-import br.com.ucsal.cine_match.model.enums.ClassificacaoEtaria;
-import br.com.ucsal.cine_match.model.enums.Genero;
-import br.com.ucsal.cine_match.model.enums.Idioma;
+import br.com.ucsal.cineUC.exception.DuracaoInvalidaException;
+import br.com.ucsal.cineUC.exception.NotaInvalidaException;
+import br.com.ucsal.cineUC.exception.PesoInvalidoException;
+import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
+import br.com.ucsal.cineUC.model.enums.Genero;
+import br.com.ucsal.cineUC.model.enums.Idioma;
 
 public class PerfilCinefilo {
 

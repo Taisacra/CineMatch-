@@ -1,12 +1,12 @@
-package br.com.ucsal.cine_match.service;
+package br.com.ucsal.cineUC.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.ucsal.cine_match.model.Filme;
-import br.com.ucsal.cine_match.model.enums.ClassificacaoEtaria;
-import br.com.ucsal.cine_match.model.enums.Genero;
-import br.com.ucsal.cine_match.model.enums.Idioma;
+import br.com.ucsal.cineUC.model.Filme;
+import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
+import br.com.ucsal.cineUC.model.enums.Genero;
+import br.com.ucsal.cineUC.model.enums.Idioma;
 
 public class CatalogoMock implements CatalogoFilmesAPI {
 

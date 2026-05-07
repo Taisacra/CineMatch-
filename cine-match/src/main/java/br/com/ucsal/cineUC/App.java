@@ -1,13 +1,13 @@
-package br.com.ucsal.cine_match;
+package br.com.ucsal.cineUC;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import br.com.ucsal.cine_match.model.PerfilCinefilo;
-import br.com.ucsal.cine_match.model.Usuario;
-import br.com.ucsal.cine_match.model.enums.ClassificacaoEtaria;
-import br.com.ucsal.cine_match.model.enums.Genero;
-import br.com.ucsal.cine_match.model.enums.Idioma;
+import br.com.ucsal.cineUC.model.PerfilCinefilo;
+import br.com.ucsal.cineUC.model.Usuario;
+import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
+import br.com.ucsal.cineUC.model.enums.Genero;
+import br.com.ucsal.cineUC.model.enums.Idioma;
 
 public class App 
 {

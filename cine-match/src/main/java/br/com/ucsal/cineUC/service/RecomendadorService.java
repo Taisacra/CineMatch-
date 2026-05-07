@@ -1,14 +1,14 @@
-package br.com.ucsal.cine_match.service;
+package br.com.ucsal.cineUC.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import br.com.ucsal.cine_match.model.Filme;
-import br.com.ucsal.cine_match.model.PerfilCinefilo;
-import br.com.ucsal.cine_match.model.Recomendacao;
-import br.com.ucsal.cine_match.model.Usuario;
-import br.com.ucsal.cine_match.util.GeradorAleatorio;
+import br.com.ucsal.cineUC.model.Filme;
+import br.com.ucsal.cineUC.model.PerfilCinefilo;
+import br.com.ucsal.cineUC.model.Recomendacao;
+import br.com.ucsal.cineUC.model.Usuario;
+import br.com.ucsal.cineUC.util.GeradorAleatorio;
 
 public class RecomendadorService {
 	
