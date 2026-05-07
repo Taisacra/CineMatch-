@@ -15,6 +15,9 @@ public class App
     	 Scanner scan = new Scanner(System.in);
     	 Usuario usuario = cadastrarUsuario(scan);
     	 
+    	 if (usuario != null) {
+             System.out.println("\nUsuário " + usuario.getNome() + " cadastrado com sucesso!");
+         }
     	
          scan.close();
     }
