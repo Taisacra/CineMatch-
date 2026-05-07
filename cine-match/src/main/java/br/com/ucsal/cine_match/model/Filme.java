@@ -52,7 +52,7 @@ public class Filme {
 	public ClassificacaoEtaria getClassificacao() {
 		return classificacao;
 	}
-
+			
 	public Idioma getIdioma() {
 		return idioma;
 	}

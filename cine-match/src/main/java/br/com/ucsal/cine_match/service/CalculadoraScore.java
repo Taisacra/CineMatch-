@@ -9,9 +9,14 @@ import br.com.ucsal.cine_match.model.enums.Genero;
 
 public class CalculadoraScore {
 
+	static final double PESO_GENERO       = 0.50;
+	static final double PESO_DURACAO      = 0.20;
+	static final double PESO_POPULARIDADE = 0.15;
+	static final double PESO_AFINIDADE    = 0.15;
+	
 	public double calcularScore(PerfilCinefilo perfil, Filme filme) {
-		double score =  0.5 * scoreGenero(perfil,filme) + 0.2 * scoreDuracao(perfil,filme)
-		+ 0.15 * scorePopularidade(filme) /*+ 0.15 * scoreAfinidade(perfil, filme)*/;
+		double score =  PESO_GENERO * scoreGenero(perfil,filme) + PESO_DURACAO * scoreDuracao(perfil,filme)
+		+ PESO_POPULARIDADE * scorePopularidade(filme) + PESO_AFINIDADE * scoreAfinidade(perfil, filme);
 		
 		return score;
 	}
@@ -64,7 +69,6 @@ public class CalculadoraScore {
 		return filme.getPopularidade();
 	}
 	
-	/*FALTA IMPLEMENTAR ESSE SCORE*/
 	
 	private double scoreAfinidade(PerfilCinefilo perfil, Filme filme) {
 	
