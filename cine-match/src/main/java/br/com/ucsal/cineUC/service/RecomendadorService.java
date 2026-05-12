@@ -10,6 +10,7 @@ import br.com.ucsal.cineUC.model.Filme;
 import br.com.ucsal.cineUC.model.PerfilCinefilo;
 import br.com.ucsal.cineUC.model.Recomendacao;
 import br.com.ucsal.cineUC.model.Usuario;
+import br.com.ucsal.cineUC.model.enums.Genero;
 import br.com.ucsal.cineUC.util.GeradorAleatorio;
 
 public class RecomendadorService {
@@ -72,8 +73,6 @@ public class RecomendadorService {
 		}
 	}
 	
-	
-	
 
 	private List<Recomendacao> gerarRecomendacoes(PerfilCinefilo perfil, List<Filme> filmes){
 		 
@@ -81,9 +80,9 @@ public class RecomendadorService {
 		
 		for( Filme f : filmes) {
 			
-			double score = calculadora.calcularScore(perfil, f);
+			double score = calculadora.calcularScore(perfil, f);//adionou o perfil
 			
-			String justificativa = criarJustificativa(f);
+			String justificativa = criarJustificativa(f, perfil);
 			
 			recomendacoes.add(new Recomendacao(null, f, score, justificativa));
 		}
@@ -92,33 +91,58 @@ public class RecomendadorService {
 	
 	}
 	
-	
-	
-	/*FALTA IMPLEMENTAR AQUI*/
-	private String criarJustificativa(Filme f) {
-		// TODO Auto-generated method stub
-		return null;
+
+	/*Adicionou o perfil*/
+	private String criarJustificativa(Filme f, PerfilCinefilo perfil) {
+		StringBuilder sb = new StringBuilder();
+	    
+	    // 1. Encontrar qual dos gêneros do filme o usuário mais gosta
+	    Genero melhorGenero = null;
+	    double maiorPeso = -1.0;
+	    
+	    for (Genero g : f.getGeneros()) {
+	        double pesoAtual = perfil.getPesoPorGenero(g);
+	        if (pesoAtual > maiorPeso) {
+	            maiorPeso = pesoAtual;
+	            melhorGenero = g;
+	        }
+	    }
+	    
+	    // 2. Usar o melhor gênero para a regra base
+	    if (melhorGenero != null && maiorPeso > 0.8) {
+	        sb.append("Você demonstra grande interesse por ")
+	          .append(melhorGenero.getGenero()) // Pega o nome do gênero
+	          .append(". ");
+	    }
+	    
+	    // 3. Regra adicional: Duração
+	    if (f.getDuracao() <= perfil.getDuracaoMin() + 20) {
+	        sb.append("É um filme curto, ideal para o seu perfil.");
+	    } else {
+	        sb.append("Uma escolha sólida para o seu catálogo.");
+	    }
+	    
+	    return sb.toString();
 	}
 	
 	
 	/*FALTA IMPLEMENTAR O DESEMPATE VIA GERADOR ALEATORIO*/
 	private void ordenarRecomendacoes(List<Recomendacao> recomendacoes) {
 		recomendacoes.sort(
+				// 1º Critério: Score Decrescente
 				Comparator
 					.comparingDouble(Recomendacao::getScore)
 					.reversed()
-				
-					.thenComparing(
-							(r1, r2) -> Integer.compare(
+					
+					// 2º Critério: Popularidade Decrescente	
+					.thenComparing((r1, r2) -> Integer.compare(
 									r2.getFilme().getPopularidade(),
 									r1.getFilme().getPopularidade()
-							)
-					)
+					))
+					// 3º Critério: Aleatório (Desempate Final)
+					.thenComparing((r1, r2) -> gerador.sortearInteiro(-1, 1))
 		);
 		
 	}
 
-
-	
-	
 }
