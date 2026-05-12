@@ -21,4 +21,8 @@ public enum Idioma {
 		return idioma;
 	}
 	
+	@Override
+	public String toString() {
+		return this.idioma;
+	}
 }

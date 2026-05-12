@@ -45,6 +45,7 @@ public class Usuario {
 	public void desativarNotificacoes() {
 		this.notificacoesAtivadas = false;
 	}
-	
+
+
 	
 }

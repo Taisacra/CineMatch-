@@ -17,6 +17,7 @@ public class App
     	 
     	 if (usuario != null) {
              System.out.println("\nUsuário " + usuario.getNome() + " cadastrado com sucesso!");
+             exibirPerfil(usuario);
          }
     	
          scan.close();
@@ -160,6 +161,29 @@ public class App
             return null;
     	}
    	}
+    
+    public static void exibirPerfil(Usuario usuario) {
+    	PerfilCinefilo perfil = usuario.getPerfilCinefilo();
+    	
+    	System.out.printf("Nome:" + usuario.getNome());
+        System.out.printf("Idade:" + usuario.getIdade());
+        
+        System.out.println("Preferências de gênero (peso de 0.0 a 1.0):");
+        for (Genero g : Genero.values()) {
+            double peso = perfil.getPesoPorGenero(g);
+            String infoExtra = (peso == 0.0) ? "  (não gosta)" : "";
+            System.out.printf(g.getGenero() + ":", peso, infoExtra);
+        }
+        
+        System.out.printf("Duração preferida:" + perfil.getDuracaoMin() + "a" + perfil.getDuracaoMax() + " minutos");
+        
+        System.out.printf("Classificação máxima:" + perfil.getClassificacaoMaxima() + " anos");
+        
+        System.out.print("Idiomas aceitos: " + perfil.getIdiomas());
+   
+        System.out.println("Já assistiu: " + perfil.getHistorico());
+        System.out.println("Notas que já deu: " + perfil.getNotas());
+    }
     	
     	
     	
