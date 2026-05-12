@@ -1,8 +1,10 @@
 package br.com.ucsal.cineUC.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import br.com.ucsal.cineUC.model.Filme;
 import br.com.ucsal.cineUC.model.PerfilCinefilo;
@@ -31,25 +33,46 @@ public class RecomendadorService {
 	
 	public List<Recomendacao> recomendar(Usuario usuario, int topN){
 		
-		PerfilCinefilo perfil = usuario.getPerfilCinefilo();
+		try {
+		
+			PerfilCinefilo perfil = usuario.getPerfilCinefilo();
 
-        List<Filme> catalogoFilmes = catalogo.buscarTodos();
+			List<Filme> catalogoFilmes = catalogo.buscarTodos();
+        
+			if (catalogoFilmes == null || catalogoFilmes.isEmpty()) {
+				return Collections.emptyList();
+			}
 
-        List<Filme> filmesFiltrados = filtro.filtrar(perfil, catalogoFilmes);
-
-        List<Recomendacao> recomendacoes = gerarRecomendacoes(perfil, filmesFiltrados);
+			List<Filme> filmesFiltrados = filtro.filtrar(perfil, catalogoFilmes);
+        
+			if (filmesFiltrados.isEmpty()) {
+				return Collections.emptyList();
+			}
+        
+			List<Recomendacao> recomendacoes = gerarRecomendacoes(perfil, filmesFiltrados);
 	
-        ordenarRecomendacoes(recomendacoes);
+			ordenarRecomendacoes(recomendacoes);
         
-        historico.registrarRecomendacao(usuario,recomendacoes);
+			List<Recomendacao> topRecomendacoes = recomendacoes.stream()
+					.limit(topN)
+					.collect(Collectors.toList()); //o toList nao funcionou sem o collect
 
-        if (usuario.isNotificacoesAtivadas()) {
-            notificador.enviar(usuario,"Saiu sua recomendação do dia!");
-        }
+			historico.registrarRecomendacao(usuario,topRecomendacoes);
+
+			if (usuario.isNotificacoesAtivadas()) {
+				notificador.enviar(usuario,"Saiu sua recomendação do dia!");
+			}
         
-        return recomendacoes;
-        
+			return topRecomendacoes;
+			
+		} catch(Exception e) {
+    	
+			return Collections.emptyList();
+			
+		}
 	}
+	
+	
 	
 
 	private List<Recomendacao> gerarRecomendacoes(PerfilCinefilo perfil, List<Filme> filmes){
@@ -68,6 +91,8 @@ public class RecomendadorService {
 		return recomendacoes;
 	
 	}
+	
+	
 	
 	/*FALTA IMPLEMENTAR AQUI*/
 	private String criarJustificativa(Filme f) {

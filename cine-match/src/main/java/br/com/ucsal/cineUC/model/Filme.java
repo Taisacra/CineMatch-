@@ -61,6 +61,19 @@ public class Filme {
 		return popularidade;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+	    if (this == o) return true;
+	    if (!(o instanceof Filme)) return false;
+
+	    Filme filme = (Filme) o;
+	    return idFilme.equals(filme.idFilme);
+	}
+
+	@Override
+	public int hashCode() {
+	    return idFilme.hashCode();
+	}
 	
 
 }

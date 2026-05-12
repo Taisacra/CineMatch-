@@ -80,8 +80,8 @@ public class PerfilCinefilo {
         return pesoPorGenero.getOrDefault(genero, 0.0);
     }
 
-    public Integer getNotaFilme(String titulo) {
-        return notas.get(titulo);
+    public Integer getNotaFilme(Filme filme) {
+        return notas.get(filme);
     }
     
     public Set<Idioma> getIdiomas() {
