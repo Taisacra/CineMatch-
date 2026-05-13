@@ -1,5 +1,6 @@
 package br.com.ucsal.cineUC.service;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +11,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import br.com.ucsal.cineUC.model.Filme;
 import br.com.ucsal.cineUC.model.PerfilCinefilo;
@@ -53,9 +56,9 @@ class FiltroFilmesTest {
         List<Filme> catalogo = new ArrayList<>();
         catalogo.add(filme);
         
-        List<Filme> catalogoFiltrado = filtro.filtrar(perfil, catalogo);
+        List<Filme> resultado = filtro.filtrar(perfil, catalogo);
         
-        assertFalse(catalogoFiltrado.contains(filme));
+        assertFalse(resultado.contains(filme));
 	}
 	
 	@Test
@@ -76,9 +79,9 @@ class FiltroFilmesTest {
 	    List<Filme> catalogo = new ArrayList<>();
 	    catalogo.add(filme);
 
-	    List<Filme> catalogoFiltrado = filtro.filtrar(perfil, catalogo);
+	    List<Filme> resultado = filtro.filtrar(perfil, catalogo);
 
-	    assertFalse(catalogoFiltrado.contains(filme));
+	    assertFalse(resultado.contains(filme));
 	}
 	
 	@Test
@@ -99,9 +102,9 @@ class FiltroFilmesTest {
 	    List<Filme> catalogo = new ArrayList<>();
 	    catalogo.add(filme);
 
-	    List<Filme> catalogoFiltrado = filtro.filtrar(perfil, catalogo);
+	    List<Filme> resultado = filtro.filtrar(perfil, catalogo);
 
-	    assertFalse(catalogoFiltrado.contains(filme));
+	    assertFalse(resultado.contains(filme));
 	}
 	
 	@Test
@@ -124,9 +127,9 @@ class FiltroFilmesTest {
 	    List<Filme> catalogo = new ArrayList<>();
 	    catalogo.add(filme);
 
-	    List<Filme> catalogoFiltrado = filtro.filtrar(perfil, catalogo);
+	    List<Filme> resultado = filtro.filtrar(perfil, catalogo);
 
-	    assertFalse(catalogoFiltrado.contains(filme));
+	    assertFalse(resultado.contains(filme));
 	}
 	
 	@Test
@@ -135,9 +138,42 @@ class FiltroFilmesTest {
 
 	    List<Filme> catalogo = new ArrayList<>();
 
-	    List<Filme> catalogoVazio = filtro.filtrar(perfil, catalogo);
+	    List<Filme> resultado = filtro.filtrar(perfil, catalogo);
 
-	    assertNotNull(catalogoVazio);
-	    assertTrue(catalogoVazio.isEmpty());
+	    assertNotNull(resultado);
+	    assertTrue(resultado.isEmpty());
+	}
+	
+	@ParameterizedTest
+	@CsvSource({
+	    "DEZ, DOZE, true",
+	    "DEZESSEIS, DEZESSEIS, true",
+	    "DEZOITO, DEZESSEIS, false"
+	})
+	@DisplayName("filme é aceito quando classificação menor ou igual a máxima do perfil")
+	void deve_AceitarFilme_QuandoClassificacaoEhCompativel(String classificacaoFilme, String classificacaoPerfil, boolean esperado) {
+
+	    PerfilCinefilo perfil = new PerfilCinefilo(
+	            90,
+	            150,
+	            ClassificacaoEtaria.valueOf(classificacaoPerfil)
+	    );
+
+	    Filme filme = new Filme(
+	            "F10",
+	            "Filme Teste",
+	            2020,
+	            120,
+	            List.of(Genero.DRAMA),
+	            ClassificacaoEtaria.valueOf(classificacaoFilme),
+	            Idioma.EN,
+	            80
+	    );
+
+	    FiltroFilmes filtro = new FiltroFilmes();
+
+	    boolean resultado = filtro.validarClassificacao(perfil, filme);
+
+	    assertEquals(esperado, resultado);
 	}
 }

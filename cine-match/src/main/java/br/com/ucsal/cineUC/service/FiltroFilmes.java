@@ -25,7 +25,8 @@ public class FiltroFilmes {
 		
 		return filmes;
 	}
-	private boolean validarAssistido(PerfilCinefilo perfil, Filme filme) {
+	
+	boolean validarAssistido(PerfilCinefilo perfil, Filme filme) {
 		Set<Filme> historico = perfil.getHistorico();
 		for (Filme f : historico ) {
 			if(f.equals(filme)) {
@@ -36,7 +37,7 @@ public class FiltroFilmes {
 	}
 
 
-	private boolean validarIdioma(PerfilCinefilo perfil, Filme filme) {
+	boolean validarIdioma(PerfilCinefilo perfil, Filme filme) {
 		Set<Idioma> idiomas = perfil.getIdiomas();
 		for(Idioma i : idiomas) {
 			if (i == filme.getIdioma()) {
@@ -46,7 +47,7 @@ public class FiltroFilmes {
 		return false;
 	}
 	
-	private boolean validarGenero(PerfilCinefilo perfil, Filme filme){
+	boolean validarGenero(PerfilCinefilo perfil, Filme filme){
 		List<Genero> generos = filme.getGeneros();
 		for(Genero g : generos) {
 			if(perfil.getPesoPorGenero(g) == 0.0) {
@@ -56,7 +57,7 @@ public class FiltroFilmes {
 		return true;
 	}
 
-	private boolean validarClassificacao(PerfilCinefilo perfil, Filme filme){
+	boolean validarClassificacao(PerfilCinefilo perfil, Filme filme){
 		if(filme.getClassificacao().getValorClassificacao() <= perfil.getClassificacaoMaxima().getValorClassificacao()) {
 			return true; //retorna true que indica classificacao aceita
 		}
