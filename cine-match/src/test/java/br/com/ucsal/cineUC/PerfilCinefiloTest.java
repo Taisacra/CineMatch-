@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -26,7 +28,7 @@ class PerfilCinefiloTest {
     void setUp() {
         perfil = new PerfilCinefilo(
                 90,
-                180,
+                150,
                 ClassificacaoEtaria.DEZESSEIS
         );
 
@@ -35,7 +37,7 @@ class PerfilCinefiloTest {
                "Duna: Parte Dois",
                 2024,
                 166,
-                java.util.List.of(Genero.FICCAO_CIENTIFICA, Genero.DRAMA),
+                List.of(Genero.FICCAO_CIENTIFICA, Genero.DRAMA),
                 ClassificacaoEtaria.QUATORZE,
                 Idioma.EN,
                 92
