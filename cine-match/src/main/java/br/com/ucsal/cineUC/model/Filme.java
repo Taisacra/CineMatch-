@@ -8,7 +8,7 @@ import br.com.ucsal.cineUC.model.enums.Idioma;
 
 public class Filme {
 	
-	private Long idFilme;
+	private String idFilme;
 	private String titulo;
 	private int ano;
 	private int duracao;
@@ -17,7 +17,7 @@ public class Filme {
 	private Idioma idioma;
 	private int popularidade;
 	
-	public Filme(Long idFilme, String titulo, int ano, int duracao, List<Genero> generos,
+	public Filme(String idFilme, String titulo, int ano, int duracao, List<Genero> generos,
 			ClassificacaoEtaria classificacao, Idioma idioma, int popularidade) {
 		this.idFilme = idFilme;
 		this.titulo = titulo;
@@ -29,7 +29,7 @@ public class Filme {
 		this.popularidade = popularidade;
 	}
 
-	public Long getIdFilme() {
+	public String getIdFilme() {
 		return idFilme;
 	}
 

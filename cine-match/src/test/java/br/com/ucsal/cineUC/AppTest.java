@@ -1,4 +1,4 @@
-package br.com.ucsal.cine_match;
+package br.com.ucsal.cineUC;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

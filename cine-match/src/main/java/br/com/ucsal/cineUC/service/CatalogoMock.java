@@ -16,7 +16,7 @@ public class CatalogoMock implements CatalogoFilmesAPI {
 	        List<Filme> filmes = new ArrayList<>();
 
 	        filmes.add(new Filme(
-	                (long) 01,
+	                "F01",
 	                "Duna: Parte Dois",
 	                2024,
 	                166,
@@ -27,7 +27,7 @@ public class CatalogoMock implements CatalogoFilmesAPI {
 	        ));
 	        
 	        filmes.add(new Filme(
-	                (long) 02,
+	                "F02",
 	                "Ela (Her)",
 	                2013,
 	                126,
@@ -38,7 +38,7 @@ public class CatalogoMock implements CatalogoFilmesAPI {
 	        ));
 	        
 	        filmes.add(new Filme(
-	                (long) 03,
+	                "F03",
 	                "O Iluminado",
 	                1980,
 	                146,

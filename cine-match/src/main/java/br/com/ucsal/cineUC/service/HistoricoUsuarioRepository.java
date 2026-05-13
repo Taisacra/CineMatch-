@@ -9,9 +9,9 @@ import br.com.ucsal.cineUC.model.Usuario;
 
 public interface HistoricoUsuarioRepository {
 	
-	void registrarRecomendacao(Usuario user, List<Recomendacao> recomendacoes);
+	void registrarRecomendacao(Usuario usuario, List<Recomendacao> recomendacoes);
 	
-	List<Filme> buscarHistorico(Usuario user);
+	List<Filme> buscarHistorico(Usuario usuario);
 
-	Map<Filme, Integer> buscarNotas(Usuario user);
+	Map<Filme, Integer> buscarNotas(Usuario usuario);
 }

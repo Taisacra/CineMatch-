@@ -21,7 +21,7 @@ public class CalculadoraScore {
 		return score;
 	}
 	
-	private double scoreGenero(PerfilCinefilo perfil, Filme filme) {
+	double scoreGenero(PerfilCinefilo perfil, Filme filme) {
 		List<Genero> generosFilme = filme.getGeneros();
 		
 		if (filme.getGeneros().isEmpty()) {
@@ -40,7 +40,7 @@ public class CalculadoraScore {
 	}
 	
 
-	private double scoreDuracao(PerfilCinefilo perfil, Filme filme) {
+	double scoreDuracao(PerfilCinefilo perfil, Filme filme) {
 		
 		if(filme.getDuracao() >= perfil.getDuracaoMin() && filme.getDuracao() <= perfil.getDuracaoMax()) {
 			return 100;
@@ -65,12 +65,12 @@ public class CalculadoraScore {
 	}
 	
 
-	private double scorePopularidade(Filme filme) {
+	double scorePopularidade(Filme filme) {
 		return filme.getPopularidade();
 	}
 	
 	
-	private double scoreAfinidade(PerfilCinefilo perfil, Filme filme) {
+	double scoreAfinidade(PerfilCinefilo perfil, Filme filme) {
 	
 		for (Map.Entry<Filme, Integer> entry : perfil.getNotas().entrySet()) {
 			 Filme filmeAssistido = entry.getKey(); //pega o filme

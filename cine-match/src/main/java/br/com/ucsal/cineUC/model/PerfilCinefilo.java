@@ -68,12 +68,12 @@ public class PerfilCinefilo {
         historico.add(filme);
     }
 
-    public void adicionarNotaFilme(Filme tituloFilme, int nota) {
+    public void adicionarNotaFilme(Filme filme, int nota) {
         if (nota < 1 || nota > 5) {
             throw new NotaInvalidaException("Nota deve estar entre 1 e 5.");
         }
 
-        notas.put(tituloFilme, nota);
+        notas.put(filme, nota);
     }
     
     public Double getPesoPorGenero(Genero genero) {
