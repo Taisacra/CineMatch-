@@ -1,23 +1,49 @@
 package br.com.ucsal.cineUC;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import br.com.ucsal.cineUC.model.PerfilCinefilo;
+import br.com.ucsal.cineUC.model.Recomendacao;
 import br.com.ucsal.cineUC.model.Usuario;
 import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
 import br.com.ucsal.cineUC.model.enums.Genero;
 import br.com.ucsal.cineUC.model.enums.Idioma;
+import br.com.ucsal.cineUC.service.CalculadoraScore;
+import br.com.ucsal.cineUC.service.CatalogoFilmesAPI;
+import br.com.ucsal.cineUC.service.CatalogoMock;
+import br.com.ucsal.cineUC.service.FiltroFilmes;
+import br.com.ucsal.cineUC.service.HistoricoUsuarioRepository;
+import br.com.ucsal.cineUC.service.HistoricoUsuarioRepositoryImpl;
+import br.com.ucsal.cineUC.service.NotificadorPush;
+import br.com.ucsal.cineUC.service.NotificadorPushImpl;
+import br.com.ucsal.cineUC.service.RecomendadorService;
+import br.com.ucsal.cineUC.util.GeradorAleatorio;
+import br.com.ucsal.cineUC.util.GeradorAleatorioImpl;
 
 public class App 
 {
     public static void main( String[] args ){
     	 Scanner scan = new Scanner(System.in);
     	 Usuario usuario = cadastrarUsuario(scan);
+    	 CatalogoFilmesAPI catalogo = new CatalogoMock();
+    	 
+    	 HistoricoUsuarioRepository historico = new HistoricoUsuarioRepositoryImpl();
+    	 NotificadorPush notificador = new NotificadorPushImpl();
+    	 GeradorAleatorio gerador = new GeradorAleatorioImpl();
+    	 CalculadoraScore calculadora = new CalculadoraScore();
+    	 FiltroFilmes filtro = new FiltroFilmes();
+    	 
+    	 RecomendadorService recomendador = new RecomendadorService(
+    			 catalogo, historico, notificador, gerador, calculadora, filtro
+    	);
     	 
     	 if (usuario != null) {
              System.out.println("\nUsuário " + usuario.getNome() + " cadastrado com sucesso!");
              exibirPerfil(usuario);
+             
+             exibirRecomendacoes(scan, usuario, recomendador);
          }
     	
          scan.close();
@@ -188,7 +214,30 @@ public class App
     	
     	
     	
-    	
+    public static void exibirRecomendacoes(
+            Scanner scan,
+            Usuario usuario,
+            RecomendadorService recomendador) {
+
+        System.out.print("\nQuantas recomendações deseja receber? ");
+        int topN = scan.nextInt();
+
+        System.out.println("\n===== RECOMENDAÇÕES =====");
+
+        List<Recomendacao> recomendacoes =
+                recomendador.recomendar(usuario, topN);
+
+        if (recomendacoes.isEmpty()) {
+            System.out.println("Nenhuma recomendação encontrada.");
+        } else {
+            for (Recomendacao r : recomendacoes) {
+                System.out.println("Filme: " + r.getFilme().getTitulo());
+                System.out.println("Score: " + r.getScore());
+                System.out.println("Justificativa: " + r.getJustificativa());
+                System.out.println("---------------------------");
+            }
+        }
+    }
     	
     	
     	

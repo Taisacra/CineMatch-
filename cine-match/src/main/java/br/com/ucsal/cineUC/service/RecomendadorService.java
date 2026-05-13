@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import br.com.ucsal.cineUC.model.Filme;
@@ -34,6 +35,10 @@ public class RecomendadorService {
 	
 	public List<Recomendacao> recomendar(Usuario usuario, int topN){
 		
+		 if(topN <= 0){
+		        return Collections.emptyList();
+		    }
+		 
 		try {
 		
 			PerfilCinefilo perfil = usuario.getPerfilCinefilo();
@@ -76,7 +81,7 @@ public class RecomendadorService {
 
 	private List<Recomendacao> gerarRecomendacoes(PerfilCinefilo perfil, List<Filme> filmes){
 		 
-		List<Recomendacao> recomendacoes = new ArrayList();
+		List<Recomendacao> recomendacoes = new ArrayList<>();
 		
 		for( Filme f : filmes) {
 			
@@ -140,9 +145,53 @@ public class RecomendadorService {
 									r1.getFilme().getPopularidade()
 					))
 					// 3º Critério: Aleatório (Desempate Final)
-					.thenComparing((r1, r2) -> gerador.sortearInteiro(-1, 1))
-		);
+					.thenComparing((r1, r2) -> 
+				    gerador.sortearInteiro(0, 1) == 0 ? -1 : 1
+					)
+				);
 		
+	}
+	
+	public Optional<Recomendacao> recomendarAleatorio(Usuario usuario) {
+
+	    try {
+	        PerfilCinefilo perfil = usuario.getPerfilCinefilo();
+
+	        List<Filme> catalogoFilmes = catalogo.buscarTodos();
+
+	        if (catalogoFilmes == null || catalogoFilmes.isEmpty()) {
+	            return Optional.empty();
+	        }
+
+	        List<Filme> filmesFiltrados = filtro.filtrar(perfil, catalogoFilmes);
+
+	        if (filmesFiltrados.isEmpty()) {
+	            return Optional.empty();
+	        }
+
+	        int indiceSorteado =
+	                gerador.sortearInteiro(0, filmesFiltrados.size() - 1);
+
+	        Filme filmeEscolhido = filmesFiltrados.get(indiceSorteado);
+
+	        double score =
+	                calculadora.calcularScore(perfil, filmeEscolhido);
+
+	        String justificativa =
+	                criarJustificativa(filmeEscolhido, perfil);
+
+	        Recomendacao recomendacao = new Recomendacao(
+	                null,
+	                filmeEscolhido,
+	                score,
+	                justificativa
+	        );
+
+	        return Optional.of(recomendacao);
+
+	    } catch (Exception e) {
+	        return Optional.empty();
+	    }
 	}
 
 }
