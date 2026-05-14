@@ -3,7 +3,10 @@ package br.com.ucsal.cineUC.model.enums;
 public enum Idioma {
 
 	PT(1L, "PT"),
-    EN(2L, "EN");
+    EN(2L, "EN"),
+    JA(3L, "JA"),
+    ES(4L, "ES"),
+    KO(6L, "KO");
 	
 	private Long idIdioma;
 	private String idioma;

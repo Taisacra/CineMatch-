@@ -10,7 +10,12 @@ public enum Genero {
     TERROR(6L, "TERROR"),
     DOCUMENTARIO(7L, "DOCUMENTARIO"),
 	AVENTURA(8L, "AVENTURA"),
-	ANIMACAO(9L, "ANIMACA");
+	ANIMACAO(9L, "ANIMACA"),
+	MUSICA(10L, "MUSICA"),
+	HISTORIA(11L, "HISTORIA"),
+	SUSPENSE(12L, "SUSPENSE"),
+	CRIME(13L, "CRIME"),
+	FANTASIA(14L, "FANTASIA");
 
 	private final Long idGenero;
     private final String genero;
