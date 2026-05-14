@@ -213,9 +213,7 @@ public class App
         System.out.println("Classificação máxima: " + perfil.getClassificacaoMaxima() + " anos");
         
         System.out.println("Idiomas aceitos: " + perfil.getIdiomas());
-   
-       /* System.out.println("Já assistiu: " + perfil.getHistorico());
-        System.out.println("Notas que já deu: " + perfil.getNotas());*/
+
     }
     	
     public static void exibirRecomendacoes(
