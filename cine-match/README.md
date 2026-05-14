@@ -16,7 +16,7 @@ Verificar versões:
 
 
 Clonar o repositório:
-- git clone https://github.com/seu-usuario/seu-repositorio.git
+- git clone https://github.com/Taisacra/CineUC.git
 
 Entrar na pasta:
 - cd nome-do-repositorio
