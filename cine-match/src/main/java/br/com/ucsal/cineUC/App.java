@@ -173,13 +173,20 @@ public class App
             }
             
             //notificação
-            System.out.print("\nDeseja ativar notificações? (true/false): ");
-            while (!scan.hasNextBoolean()) {
-                System.out.println("Erro: Responda com 'true' ou 'false'.");
+            System.out.print("\nDeseja ativar notificações? (sim/nao): ");
+            
+            String resposta = scan.next();
+            boolean notificacoes = false;
+            
+            if(resposta.equals("sim")) {
+            	notificacoes = true;
+            }else if(resposta.equals("nao")) {
+            	notificacoes = false;
+            }else {
+            	System.out.println("Erro: Responda com 'sim' ou 'nao'.");
                 scan.next();
             }
-            boolean notificacoes = scan.nextBoolean();
-
+                     
             return new Usuario(idUsuario, nome, idade, perfil, notificacoes);
     		
     	}catch(InputMismatchException e) {
@@ -191,24 +198,24 @@ public class App
     public static void exibirPerfil(Usuario usuario) {
     	PerfilCinefilo perfil = usuario.getPerfilCinefilo();
     	
-    	System.out.printf("Nome:" + usuario.getNome());
-        System.out.printf("Idade:" + usuario.getIdade());
+    	System.out.println("Nome: " + usuario.getNome());
+        System.out.println("Idade: " + usuario.getIdade());
         
         System.out.println("Preferências de gênero (peso de 0.0 a 1.0):");
         for (Genero g : Genero.values()) {
             double peso = perfil.getPesoPorGenero(g);
             String infoExtra = (peso == 0.0) ? "  (não gosta)" : "";
-            System.out.printf(g.getGenero() + ":", peso, infoExtra);
+            System.out.println(g.getGenero() + " : " + peso + infoExtra);
         }
         
-        System.out.printf("Duração preferida:" + perfil.getDuracaoMin() + "a" + perfil.getDuracaoMax() + " minutos");
+        System.out.println("\nDuração preferida: " + perfil.getDuracaoMin() + " a " + perfil.getDuracaoMax() + " minutos");
         
-        System.out.printf("Classificação máxima:" + perfil.getClassificacaoMaxima() + " anos");
+        System.out.println("Classificação máxima: " + perfil.getClassificacaoMaxima() + " anos");
         
-        System.out.print("Idiomas aceitos: " + perfil.getIdiomas());
+        System.out.println("Idiomas aceitos: " + perfil.getIdiomas());
    
-        System.out.println("Já assistiu: " + perfil.getHistorico());
-        System.out.println("Notas que já deu: " + perfil.getNotas());
+       /* System.out.println("Já assistiu: " + perfil.getHistorico());
+        System.out.println("Notas que já deu: " + perfil.getNotas());*/
     }
     	
     public static void exibirRecomendacoes(

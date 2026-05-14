@@ -61,8 +61,6 @@ public class RecomendadorServiceTest {
     @BeforeEach
     public void setup() {
         
-        // Perfil configurado para ser EXTREMAMENTE PERMISSIVO (0 a 500 minutos)
-        // Isso resolve o erro "was: <0>" garantindo que os filmes passem no FiltroFilmes (Spy)
         PerfilCinefilo perfil = new PerfilCinefilo(0, 500, ClassificacaoEtaria.DEZOITO);
         perfil.adicionarPesoGenero(Genero.TERROR, 1.0);
         perfil.adicionarPesoGenero(Genero.ACAO, 1.0);
@@ -72,10 +70,9 @@ public class RecomendadorServiceTest {
  
         maria = new Usuario(1L, "Maria", 25, perfil, true);
 
-        // Scores idênticos para garantir que o desempate aleatório (Gerador) seja testável
-        Filme f1 = new Filme("1", "O Iluminado", 1980, 146, List.of(Genero.TERROR), ClassificacaoEtaria.DEZESSEIS, Idioma.PT, 100);
-        Filme f2 = new Filme("2", "Duro de Matar", 1988, 132, List.of(Genero.ACAO), ClassificacaoEtaria.QUATORZE, Idioma.PT, 100);
-        Filme f3 = new Filme("3", "Toy Story", 1995, 81, List.of(Genero.ANIMACAO), ClassificacaoEtaria.LIVRE, Idioma.PT, 100);
+        Filme f1 = new Filme("F01", "O Poderoso Chefão", 1972, 175, List.of(Genero.DRAMA, Genero.CRIME), ClassificacaoEtaria.QUATORZE, Idioma.EN, 100);
+        Filme f2 = new Filme("F02", "Duro de Matar", 1988, 132, List.of(Genero.ACAO), ClassificacaoEtaria.QUATORZE, Idioma.PT, 100);
+        Filme f3 = new Filme("F03", "Toy Story", 1995, 81, List.of(Genero.ANIMACAO), ClassificacaoEtaria.LIVRE, Idioma.PT, 100);
 
         filmesFake = List.of(f1, f2, f3);
         
