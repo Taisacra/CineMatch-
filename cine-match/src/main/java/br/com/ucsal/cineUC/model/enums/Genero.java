@@ -8,7 +8,9 @@ public enum Genero {
     FICCAO_CIENTIFICA(4L, "FICCAO_CIENTIFICA"),
     ROMANCE(5L, "ROMANCE"),
     TERROR(6L, "TERROR"),
-    DOCUMENTARIO(7L, "DOCUMENTARIO");
+    DOCUMENTARIO(7L, "DOCUMENTARIO"),
+	AVENTURA(8L, "AVENTURA"),
+	ANIMACAO(9L, "ANIMACA");
 
 	private final Long idGenero;
     private final String genero;
