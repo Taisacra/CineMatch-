@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.atLeastOnce;
@@ -44,10 +45,10 @@ public class RecomendadorServiceTest {
     @Mock private HistoricoUsuarioRepository historico;
     @Mock private NotificadorPush notificador;
     @Mock private GeradorAleatorio gerador;
+    @Mock private FiltroFilmes filtro;
     
     // Requisito 8: Uso de Spy (instâncias reais vigiadas)
     @Spy private CalculadoraScore calculadora = new CalculadoraScore();
-    @Spy private FiltroFilmes filtro = new FiltroFilmes();
 
     @InjectMocks private RecomendadorService service;
 
@@ -59,7 +60,6 @@ public class RecomendadorServiceTest {
     
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.openMocks(this);
         
         // Perfil configurado para ser EXTREMAMENTE PERMISSIVO (0 a 500 minutos)
         // Isso resolve o erro "was: <0>" garantindo que os filmes passem no FiltroFilmes (Spy)
@@ -78,12 +78,15 @@ public class RecomendadorServiceTest {
         Filme f3 = new Filme("3", "Toy Story", 1995, 81, List.of(Genero.ANIMACAO), ClassificacaoEtaria.LIVRE, Idioma.PT, 100);
 
         filmesFake = List.of(f1, f2, f3);
+        
     }
     
     @Test
     @DisplayName("1. Stub Básico e 4. Verify - Sucesso")
     public void deveRecomendarComSucesso() {
         when(catalogo.buscarTodos()).thenReturn(filmesFake);
+        
+        when(filtro.filtrar(any(), anyList())).thenReturn(filmesFake);
 
         List<Recomendacao> resultado = service.recomendar(maria, 2);
 
@@ -108,8 +111,12 @@ public class RecomendadorServiceTest {
     @DisplayName("3. Stub Sequencial - Modo Surpreenda-me")
     public void deveUsarStubSequencialNoDesempate() {
         when(catalogo.buscarTodos()).thenReturn(filmesFake);
-        // Retorna índices diferentes para simular múltiplos sorteios
-        when(gerador.sortearInteiro(anyInt(), anyInt())).thenReturn(0, 1, 2);
+        
+        when(filtro.filtrar(any(), anyList())).thenReturn(filmesFake);
+        
+        // Retornos para as várias vezes que o sorteio pode ser chamado
+        when(gerador.sortearInteiro(anyInt(), anyInt())).thenReturn(0, 1, 2, 0);
+
 
         Optional<Recomendacao> rec = service.recomendarAleatorio(maria);
 
@@ -121,13 +128,16 @@ public class RecomendadorServiceTest {
     @DisplayName("5. Matchers e 6. ArgumentCaptor - Histórico")
     public void deveInspecionarRecomendacoesRegistradas() {
         when(catalogo.buscarTodos()).thenReturn(filmesFake);
-
+        
+        when(filtro.filtrar(any(), anyList())).thenReturn(filmesFake);
+        
         service.recomendar(maria, 2);
 
         // Matcher eq(maria) e uso do Captor para validar o que foi salvo
         verify(historico).registrarRecomendacao(eq(maria), recomendacaoCaptor.capture());
         
         List<Recomendacao> registradas = recomendacaoCaptor.getValue();
+        
         assertNotNull(registradas);
         assertFalse(registradas.isEmpty());
     }
