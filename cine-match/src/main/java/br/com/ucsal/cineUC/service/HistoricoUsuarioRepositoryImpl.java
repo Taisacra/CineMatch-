@@ -24,4 +24,4 @@ public class HistoricoUsuarioRepositoryImpl implements HistoricoUsuarioRepositor
     public Map<Filme, Integer> buscarNotas(Usuario user) {
         return new HashMap<>();
     }
-}
+} 
