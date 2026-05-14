@@ -51,7 +51,9 @@ Ou executar classes específicas:
 - FiltroFilmesTest
 - RecomendadorServiceTest
 
-Resultado dos testes:
+## Resultado dos testes:
+<img width="1231" height="356" alt="Cobertura de testes" src="https://github.com/user-attachments/assets/efc9d26b-e964-489b-89fb-e5490a49dd6c" />
+
 
 ## Diagrama de calsses
 <img width="2011" height="881" alt="DiagramaDeClasses" src="https://github.com/user-attachments/assets/7be6e95f-f4d3-4783-8e83-781867925fec" />
