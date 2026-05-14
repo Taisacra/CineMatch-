@@ -4,7 +4,7 @@ Como testar:
 
 
 Diagrama de calsses
-<img width="2011" height="881" alt="DiagramaClasses drawio" src="https://github.com/user-attachments/assets/dab87f5c-a91d-4467-a023-384e3336d64c" />
+<img width="2011" height="881" alt="DiagramaDeClasses" src="https://github.com/user-attachments/assets/7be6e95f-f4d3-4783-8e83-781867925fec" />
 
 
 Diagrama sequencial 
