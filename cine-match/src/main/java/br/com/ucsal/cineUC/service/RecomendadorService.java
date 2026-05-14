@@ -96,8 +96,6 @@ public class RecomendadorService {
 	
 	}
 	
-
-	/*Adicionou o perfil*/
 	private String criarJustificativa(Filme f, PerfilCinefilo perfil) {
 		StringBuilder sb = new StringBuilder();
 	    
@@ -130,8 +128,7 @@ public class RecomendadorService {
 	    return sb.toString();
 	}
 	
-	
-	/*FALTA IMPLEMENTAR O DESEMPATE VIA GERADOR ALEATORIO*/
+
 	private void ordenarRecomendacoes(List<Recomendacao> recomendacoes) {
 		recomendacoes.sort(
 				// 1º Critério: Score Decrescente

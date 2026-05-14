@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,7 +30,8 @@ class FiltroFilmesTest {
 		filtro = new FiltroFilmes();
 
 		perfil = new PerfilCinefilo(90, 150, ClassificacaoEtaria.DEZESSEIS);
-		perfil.adicionarIdioma(Idioma.EN);
+		
+		perfil.adicionarIdioma(Idioma.PT);
 	    perfil.adicionarPesoGenero(Genero.ROMANCE, 1.0);
 	    perfil.adicionarPesoGenero(Genero.DRAMA, 1.0);
 	}

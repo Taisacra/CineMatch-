@@ -1,11 +1,11 @@
 package br.com.ucsal.cineUC.service;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,7 +16,6 @@ import br.com.ucsal.cineUC.model.PerfilCinefilo;
 import br.com.ucsal.cineUC.model.enums.ClassificacaoEtaria;
 import br.com.ucsal.cineUC.model.enums.Genero;
 import br.com.ucsal.cineUC.model.enums.Idioma;
-import br.com.ucsal.cineUC.service.CalculadoraScore;
 
 class CalculadoraScoreTest {
 
