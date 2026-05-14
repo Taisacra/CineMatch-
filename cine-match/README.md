@@ -1,15 +1,67 @@
-Como rodar:
+## Como rodar o projeto
 
-Como testar:
+### Pré-requisitos
+
+Ter instalado:
+
+- Java JDK 17+
+- Maven
+- Eclipse (opcional)
+
+### No terminal:
+
+Verificar versões:
+- java -version
+- mvn -version
 
 
-Diagrama de calsses
+Clonar o repositório:
+- git clone https://github.com/seu-usuario/seu-repositorio.git
+
+Entrar na pasta:
+- cd nome-do-repositorio
+
+Executar o projeto: 
+- mvn clean compile
+- mvn exec:java
+
+ou execute diretamente pela IDE:
+
+clique com botão direito na classe Main
+
+Run As → Java Application
+
+
+## Como testar:
+
+### Via terminal:
+
+mvn test
+
+### Via Eclipse:
+
+clique com botão direito no projeto
+
+Run As → JUnit Test
+
+Ou executar classes específicas:
+- PerfilCinefiloTest
+- FilmeTest
+- CalculadoraScoreTest
+- FiltroFilmesTest
+- RecomendadorServiceTest
+
+Resultado dos testes:
+
+## Diagrama de calsses
 <img width="2011" height="881" alt="DiagramaDeClasses" src="https://github.com/user-attachments/assets/7be6e95f-f4d3-4783-8e83-781867925fec" />
 
 
-Diagrama sequencial 
+## Diagrama sequencial 
 <img width="973" height="667" alt="DiagramaSequencial drawio" src="https://github.com/user-attachments/assets/b8dc660b-a353-44df-bdd8-81b5abf0f86d" />
 
 
 
-Integrantes: Luísa Bahia Katsivalis e Tainá Sacramento da Silva 
+## Integrantes: 
+- Luísa Bahia Katsivalis
+- Tainá Sacramento da Silva 
