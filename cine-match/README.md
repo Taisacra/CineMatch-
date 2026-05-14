@@ -53,6 +53,12 @@ Ou executar classes específicas:
 
 ## Resultado dos testes:
 <img width="1231" height="356" alt="Cobertura de testes" src="https://github.com/user-attachments/assets/efc9d26b-e964-489b-89fb-e5490a49dd6c" />
+<img width="1139" height="356" alt="Testes Services" src="https://github.com/user-attachments/assets/4a98fe63-950a-4e65-a1bf-9890be27528d" />
+<img width="1055" height="357" alt="Testes model" src="https://github.com/user-attachments/assets/aa7ae6c2-f9fe-4de5-aee1-5ba4087e5483" />
+<img width="1111" height="324" alt="Testes enum" src="https://github.com/user-attachments/assets/5a6e7581-e7a1-43ec-8343-c1db20d17ce0" />
+<img width="1130" height="340" alt="Testes exception" src="https://github.com/user-attachments/assets/0485715a-ef89-4c38-8e93-7cc09090f046" />
+
+
 
 
 ## Diagrama de calsses
